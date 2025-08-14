@@ -5,7 +5,10 @@ COPY backend/target/*.jar .
 
 RUN mkdir -p dependency && (cd dependency; jar -xf ../*.jar)
 
-FROM metersphere/fabric8-java-alpine-openjdk8-jre
+RUN mkdir -p /opt/metersphere/conf/
+COPY metersphere.properties /opt/metersphere/conf/metersphere.properties
+
+FROM borry/fabric8-java-alpine-openjdk8-jre
 
 LABEL maintainer="FIT2CLOUD <support@fit2cloud.com>"
 
